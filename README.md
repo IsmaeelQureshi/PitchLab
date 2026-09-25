@@ -45,23 +45,6 @@ Open [**http://127.0.0.1:4173**](http://127.0.0.1:4173). Press **Ctrl+C** to sto
 
 Serve the app over HTTP; opening `dist/index.html` directly will not load its JavaScript modules correctly.
 
-## 🌐 Deploy to Vercel
-
-Import the repository with these settings:
-
-| Setting | Value |
-| ------- | ----- |
-| Root Directory | Project root |
-| Framework Preset | Other |
-| Build Command | `npm run build` |
-| Output Directory | `dist` |
-
-The included `vercel.json` configures the build command and output directory. The build runs syntax checks and tests before deployment. No environment variables, API keys, database setup, or backend service are required.
-
-Match browsing fetches public JSON from StatsBomb’s GitHub repository and requires internet access. Coverage is limited to the matches published in the open dataset. The bundled World Cup final can be analyzed without internet access when the app is served locally.
-
-Selected matches and imports stay in browser memory. Reloading restores the bundled match; there is no saved history. After deployment, check match loading, filters, and JSON export/import at the deployed URL.
-
 ## 📊 How the Analysis Works
 
 Each shot has a scoring probability given by its xG. PitchLab builds a goal-count distribution for each team using Poisson-binomial dynamic programming, then combines the distributions to calculate win, draw, and loss probabilities.
