@@ -2,6 +2,8 @@
 
 *An interactive soccer analytics dashboard with shot maps, expected goals, and chance-based outcome probabilities*
 
+🔗 **Live Demo:** [Hosted on Vercel](https://pitch-lab-nu.vercel.app/)
+
 PitchLab lets you browse matches from StatsBomb Open Data, inspect shots on an interactive pitch, and explore the chances behind the score. Choose a competition, season, and match, then click **Analyze match** to see the results.
 
 The dashboard uses **StatsBomb’s supplied expected-goals (xG) values**, not a model trained by PitchLab. Outcome probabilities describe what could happen if the selected chances were repeated; they are **not predictions of future matches**.
