@@ -1,0 +1,3 @@
+export const demo=[
+[8,'home',88,30,'A. Morgan',false,'foot'],[14,'away',83,45,'J. Silva',false,'foot'],[21,'home',96,35,'A. Morgan',true,'foot'],[28,'home',85,19,'S. Park',false,'foot'],[34,'away',94,32,'J. Silva',true,'head'],[40,'home',92,42,'L. Reed',false,'head'],[47,'away',79,30,'M. Costa',false,'foot'],[53,'home',90,34,'S. Park',false,'foot'],[61,'home',99,32,'A. Morgan',true,'foot'],[66,'away',91,22,'R. Diaz',false,'foot'],[72,'home',87,38,'L. Reed',false,'foot'],[78,'away',95,39,'J. Silva',false,'foot'],[84,'home',93,29,'S. Park',false,'foot'],[89,'away',82,37,'M. Costa',false,'foot']
+].map(([minute,team,x,y,player,goal,bodyPart],i)=>({id:i+1,minute,team,x,y,player,goal,bodyPart}));

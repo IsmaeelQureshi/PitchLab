@@ -1,0 +1,11 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {expectedGoals,goalDistribution,outcomes,validateShots,summarize} from '../dist/analytics.js';import {demo} from '../dist/demo.js';
+test('exact distribution matches two fair Bernoulli trials',()=>assert.deepEqual(goalDistribution([.5,.5]),[.25,.5,.25]));
+test('empty game is always a draw',()=>assert.deepEqual(outcomes([],[]),{homeWin:0,draw:1,awayWin:0}));
+test('certain goal wins against zero chances',()=>assert.deepEqual(outcomes([1],[0]),{homeWin:1,draw:0,awayWin:0}));
+test('probability mass is conserved and symmetric for identical teams',()=>{const p=outcomes([.1,.4,.8],[.1,.4,.8]);assert.ok(Math.abs(p.homeWin+p.draw+p.awayWin-1)<1e-12);assert.ok(Math.abs(p.homeWin-p.awayWin)<1e-12);});
+test('closer central shots have higher xG; headers are penalized',()=>{assert.ok(expectedGoals({x:95,y:34})>expectedGoals({x:75,y:34}));assert.ok(expectedGoals({x:95,y:34})>expectedGoals({x:95,y:34,bodyPart:'head'}));});
+test('xG finite and bounded over whole pitch including goal posts',()=>{for(let x=0;x<=105;x++)for(const y of [0,30.34,34,37.66,68]){const p=expectedGoals({x,y});assert.ok(Number.isFinite(p)&&p>0&&p<1);}});
+test('validation rejects corrupt inputs without mutating existing data',()=>{assert.throws(()=>validateShots([{...demo[0],x:106}]));assert.throws(()=>validateShots([{...demo[0],goal:'false'}]));assert.throws(()=>validateShots({}));assert.throws(()=>validateShots(Array(5001).fill(demo[0])));assert.equal(validateShots(demo).length,14);});
+test('invalid probabilities rejected',()=>{for(const p of [-1,1.1,NaN])assert.throws(()=>goalDistribution([p]));});
+test('demo totals agree with event log',()=>assert.deepEqual(summarize(demo).teams.map(t=>[t.shots,t.goals]),[[8,2],[6,1]]));

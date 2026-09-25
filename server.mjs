@@ -1,0 +1,4 @@
+import http from 'node:http';
+import {readFile} from 'node:fs/promises';
+const allowed=new Set(['index.html','style.css','app.js','export.js','statsbomb.js','match-browser.js','analytics.js','demo.js','match-data.js','statsbomb-logo.png','statsbomb-license.pdf']);
+http.createServer(async(req,res)=>{const name=new URL(req.url,'http://localhost').pathname.slice(1)||'index.html';if(!allowed.has(name)){res.writeHead(404);return res.end('Not found');}try{const body=await readFile(new URL(`./dist/${name}`,import.meta.url));res.setHeader('Content-Type',name.endsWith('.png')?'image/png':name.endsWith('.pdf')?'application/pdf':name.endsWith('.html')?'text/html':name.endsWith('.css')?'text/css':'text/javascript');res.end(body);}catch{res.writeHead(500);res.end('Unable to load asset');}}).listen(4173,'127.0.0.1',()=>console.log('PitchLab: http://127.0.0.1:4173'));

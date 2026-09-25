@@ -1,0 +1,17 @@
+{
+  "name": "pitchlab",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Soccer shot analytics and exact outcome probability engine",
+  "scripts": {
+    "start": "node server.mjs",
+    "build": "npm run check && npm test",
+    "test": "node --test",
+    "check": "node --check dist/app.js && node --check dist/analytics.js && node --check dist/statsbomb.js && node --check dist/match-browser.js && node --check dist/export.js && node --check server.mjs",
+    "data:refresh": "node scripts/fetch-data.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
