@@ -43,8 +43,6 @@ npm start
 
 Open [**http://127.0.0.1:4173**](http://127.0.0.1:4173). Press **Ctrl+C** to stop the server. No `npm install` is needed because the project has no external npm dependencies.
 
-On macOS, you can also double-click `Start PitchLab.command`. The launcher uses an installed Node.js or the bundled Codex Node runtime when available. Keep its Terminal window open while using the app.
-
 Serve the app over HTTP; opening `dist/index.html` directly will not load its JavaScript modules correctly.
 
 ## 🌐 Deploy to Vercel
@@ -119,7 +117,6 @@ tests/                    Analytics, adapter, loading, and export tests
 .github/workflows/ci.yml   Automated syntax checks and tests
 server.mjs                Local static server
 vercel.json               Static deployment settings
-Start PitchLab.command    macOS launcher
 ```
 
 ## ✅ Tests
